@@ -1,0 +1,35 @@
+<h1>Database Relationships</h1>
+
+<p *ngIf="loading">
+  Loading relationships...
+</p>
+
+<p *ngIf="!loading && relationships.length === 0">
+  No relationships found.
+</p>
+
+<table *ngIf="!loading && relationships.length > 0">
+
+  <thead>
+    <tr>
+      <th>Parent Table</th>
+      <th>Parent Column</th>
+      <th>Child Table</th>
+      <th>Child Column</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let rel of relationships">
+
+      <td>{{ rel.parent_table }}</td>
+      <td>{{ rel.parent_column }}</td>
+      <td>{{ rel.child_table }}</td>
+      <td>{{ rel.child_column }}</td>
+
+    </tr>
+
+  </tbody>
+
+</table>

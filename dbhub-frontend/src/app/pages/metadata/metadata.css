@@ -1,0 +1,42 @@
+.metadata-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+select,
+button {
+  padding: 10px;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th {
+  background: #f3f4f6;
+}
+
+th,
+td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}

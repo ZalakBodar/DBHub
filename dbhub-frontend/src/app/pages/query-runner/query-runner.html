@@ -1,0 +1,49 @@
+<div class="query-container">
+
+  <h1>Query Runner</h1>
+
+  <textarea
+    [(ngModel)]="query"
+    rows="8"
+    placeholder="Write SQL Query Here">
+  </textarea>
+
+<button type="button" (click)="runQuery()">
+  Run Query
+</button>
+
+  <div *ngIf="results.length">
+
+    <h2>Results</h2>
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th *ngFor="let key of objectKeys(results[0])">
+            {{ key }}
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let row of results">
+
+          <td *ngFor="let key of objectKeys(row)">
+            {{ row[key] }}
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

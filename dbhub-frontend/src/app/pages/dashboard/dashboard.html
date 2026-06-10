@@ -1,0 +1,68 @@
+<div class="dashboard-container">
+
+  <h1>Dashboard</h1>
+
+  <div class="dashboard-grid">
+
+    <div class="card">
+      <h3>Total Tables</h3>
+      <p>{{ totalTables }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Users</h3>
+      <p>{{ totalUsers }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Database Status</h3>
+      <p>{{ databaseStatus }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Connector Type</h3>
+      <p>{{ connectorType }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Database Name</h3>
+      <p>{{ databaseName }}</p>
+    </div>
+   <div class="activity-card">
+
+  <h3>Recent Activities</h3>
+
+  <ul>
+
+    <li *ngFor="let activity of activities">
+      {{ activity }}
+    </li>
+
+  </ul>
+
+</div>
+<div class="health-card">
+
+  <h3>Database Health</h3>
+
+  <p>
+    Status:
+    <strong>{{ databaseStatus }}</strong>
+  </p>
+
+  <p>
+    Database:
+    {{ databaseName }}
+  </p>
+
+  <p>
+    Server:
+    {{ serverName }}
+  </p>
+
+</div>
+  
+  </div>
+  
+
+</div>

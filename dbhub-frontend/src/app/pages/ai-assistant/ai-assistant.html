@@ -1,0 +1,100 @@
+<div class="ai-container">
+
+  <h1>AI Assistant</h1>
+
+  <textarea
+    [(ngModel)]="question"
+    rows="5"
+    placeholder="Ask a question">
+  </textarea>
+
+  <br><br>
+
+  <button
+    (click)="askAI()">
+    Ask AI
+  </button>
+
+  <br><br>
+  <div *ngIf="generatedSql">
+
+    <h3>Generated SQL</h3>
+
+    <pre>{{ generatedSql }}</pre>
+
+    <button
+      (click)="copySQL()">
+      Copy SQL
+    </button>
+
+  </div>
+
+  <br>
+
+  <div *ngIf="count">
+
+    <p>
+      Records Found:
+      <strong>{{ count }}</strong>
+    </p>
+
+    <p>
+      Execution Time:
+      <strong>{{ executionTime }}</strong>
+      sec
+    </p>
+
+  </div>
+
+  <button
+    *ngIf="rows.length"
+    (click)="exportToExcel()">
+
+    Export Excel
+
+  </button>
+
+  <br><br>
+
+  <div *ngIf="rows.length">
+
+    <table border="1">
+
+      <thead>
+
+        <tr>
+
+          <th
+            *ngFor="
+            let col of objectKeys(rows[0])
+            ">
+            {{ col }}
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr
+          *ngFor="
+          let row of rows
+          ">
+
+          <td
+            *ngFor="
+            let col of objectKeys(rows[0])
+            ">
+            {{ row[col] }}
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

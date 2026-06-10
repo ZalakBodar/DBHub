@@ -1,0 +1,70 @@
+<div class="data-viewer-container">
+
+  <h1>Data Viewer</h1>
+
+  <div class="toolbar">
+
+    <label>Select Table:</label>
+
+    <select [(ngModel)]="selectedTable">
+
+      <option value="">Choose Table</option>
+
+      <option *ngFor="let table of tables"
+              [value]="table">
+        {{ table }}
+      </option>
+
+    </select>
+
+  <button class="load-btn" (click)="loadData()">
+  Load Data
+</button>
+
+<button class="export-btn" (click)="exportToExcel()">
+  Export Excel
+</button>
+
+  </div>
+
+  <div *ngIf="rows.length === 0">
+
+  <p>
+    Select a table and click Load Data
+  </p>
+
+</div>
+
+<input
+  type="text"
+  placeholder="Search records..."
+  [(ngModel)]="searchText"
+  (input)="filterData()">
+
+<table *ngIf="rows.length > 0">
+
+    <thead>
+      <tr>
+
+        <th *ngFor="let column of objectKeys(rows[0])">
+          {{ column }}
+        </th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+
+    <tr *ngFor="let row of filteredRows">
+
+        <td *ngFor="let column of objectKeys(row)">
+          {{ row[column] }}
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

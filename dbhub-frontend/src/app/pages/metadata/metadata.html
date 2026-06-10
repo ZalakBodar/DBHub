@@ -1,0 +1,88 @@
+<div class="metadata-container">
+
+  <h1>Metadata Management</h1>
+
+  <div class="toolbar">
+
+    <select [(ngModel)]="selectedTable">
+
+      <option value="">
+        Select Table
+      </option>
+
+      <option
+        *ngFor="let table of tables"
+        [value]="table">
+
+        {{ table }}
+
+      </option>
+
+    </select>
+
+    <button (click)="loadMetadata()">
+      View Metadata
+    </button>
+
+  </div>
+
+  <div
+    class="metadata-info"
+    *ngIf="columns.length > 0">
+
+    <p>
+      <strong>Table:</strong>
+      {{ selectedTable }}
+    </p>
+
+    <p>
+      <strong>Total Columns:</strong>
+      {{ columns.length }}
+    </p>
+
+  </div>
+
+  <table *ngIf="columns.length > 0">
+
+    <thead>
+
+      <tr>
+
+        <th>Column Name</th>
+        <th>Data Type</th>
+        <th>Nullable</th>
+        <th>Max Length</th>
+        <th>Primary Key</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let column of columns">
+
+        <td>{{ column.column_name }}</td>
+        <td>{{ column.data_type }}</td>
+        <td>{{ column.nullable }}</td>
+        <td>{{ column.max_length }}</td>
+
+        <td>
+
+          <span *ngIf="column.primary_key === 'YES'">
+            ✅ YES
+          </span>
+
+          <span *ngIf="column.primary_key === 'NO'">
+            ❌ NO
+          </span>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

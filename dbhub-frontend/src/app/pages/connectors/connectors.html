@@ -1,0 +1,136 @@
+<div class="connector-container">
+
+  <h1>Connector Management</h1>
+
+  <div class="form-card">
+
+    <label>Connector Name</label>
+    <input
+      type="text"
+      [(ngModel)]="connectorName">
+
+    <label>Database Type</label>
+<select
+  [(ngModel)]="databaseType"
+  (change)="onDatabaseTypeChange()">
+
+  <option value="MSSQL">MSSQL</option>
+
+  <option value="POSTGRESQL">
+    PostgreSQL
+  </option>
+
+  <option value="ORACLE">
+    Oracle
+  </option>
+
+</select>
+
+    <label>Host</label>
+
+    <input
+      type="text"
+      [(ngModel)]="host">
+
+    <label>Port</label>
+
+    <input
+  type="number"
+  [(ngModel)]="port"
+  
+/>
+
+    <label>Username</label>
+
+    <input
+      type="text"
+      [(ngModel)]="username">
+
+    <label>Password</label>
+
+    <input
+      type="password"
+      [(ngModel)]="password">
+
+    <label>Database Name</label>
+
+    <input
+      type="text"
+      [(ngModel)]="databaseName">
+
+    <div class="button-group">
+
+      <button
+        (click)="testConnection()">
+        Test Connection
+      </button>
+<button
+  (click)="saveConnector()"
+  [disabled]="
+    !connectorName ||
+    !host ||
+    !databaseName
+  ">
+  Save Connector
+</button>
+
+    </div>
+
+  </div>
+
+  <h2>Saved Connectors</h2>
+
+<table>
+
+  <thead>
+
+    <tr>
+
+      <th>Name</th>
+      <th>Type</th>
+      <th>Host</th>
+      <th>Port</th>
+      <th>Database</th>
+      <th>User</th>
+      <th>Status</th>
+      <th>Action</th>
+
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let connector of connectors; let i = index">
+
+    <td>{{ connector.Name }}</td>
+<td>{{ connector.DbType }}</td>
+<td>{{ connector.Host }}</td>
+<td>{{ connector.Port }}</td>
+<td>{{ connector.DatabaseName }}</td>
+<td>{{ connector.Username }}</td>
+
+ <td
+  [style.color]="connector.Status === 'Active' ? 'green' : 'red'"
+>
+  {{ connector.Status }}
+</td>
+
+      
+<td>
+
+
+     <button
+  class="delete-btn"
+  (click)="deleteConnector(connector.Id)">
+  Delete
+</button>
+      </td>
+
+    </tr>
+
+  </tbody>
+
+</table>
+
+</div>

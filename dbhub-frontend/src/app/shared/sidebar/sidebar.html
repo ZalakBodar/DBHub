@@ -1,0 +1,67 @@
+<div class="sidebar">
+
+  <h2 class="logo">DBHub</h2>
+
+  <ul>
+
+    <li>
+      <a routerLink="/dashboard">
+        Dashboard
+      </a>
+    </li>
+
+    <li *ngIf="userRole === 'Admin'">
+      <a routerLink="/connectors">
+        Connectors
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/metadata">
+        Metadata
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/data-viewer">
+        Data Viewer
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/query-runner">
+        Query Runner
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/ai-assistant">
+        AI Assistant
+      </a>
+    </li>
+    <li>
+  <a routerLink="/query-history">
+    Query History
+  </a>
+</li>
+<li>
+  <a routerLink="/relationships">
+    Relationships
+  </a>
+</li>
+
+    <li *ngIf="userRole === 'Admin'">
+      <a routerLink="/users">
+        Users
+      </a>
+    </li>
+
+  </ul>
+
+  <button
+    class="logout-btn"
+    (click)="logout()">
+    Logout
+  </button>
+
+</div>

@@ -1,0 +1,72 @@
+<div class="users-container">
+
+  <h1>User Management</h1>
+
+  <div class="form-row">
+
+    <input
+      type="text"
+      placeholder="Name"
+      [(ngModel)]="name">
+
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="email">
+
+    <select [(ngModel)]="role">
+      <option>Admin</option>
+      <option>Developer</option>
+      <option>Viewer</option>
+    </select>
+
+    <button (click)="saveUser()">
+      {{ editingId ? 'Update User' : 'Add User' }}
+    </button>
+
+  </div>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let user of users">
+
+        <td>{{ user.Id }}</td>
+        <td>{{ user.Name }}</td>
+        <td>{{ user.Email }}</td>
+        <td>{{ user.Role }}</td>
+
+        <td>
+
+          <button
+            class="edit-btn"
+            (click)="editUser(user)">
+            Edit
+          </button>
+
+          <button
+            class="delete-btn"
+            (click)="deleteUser(user.Id)">
+            Delete
+          </button>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
