@@ -2,24 +2,93 @@
   padding: 20px;
 }
 
+.header h1 {
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+.summary-card {
+  width: 220px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.summary-card h3 {
+  margin: 0;
+  color: #475569;
+}
+
+.summary-card p {
+  margin-top: 10px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.search-box {
+  width: 350px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
+  background: white;
 }
 
-th {
+thead {
   background: #2563eb;
   color: white;
 }
 
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 10px;
+th {
+  padding: 14px;
   text-align: left;
+}
+
+td {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  vertical-align: top;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
 }
 
 pre {
   margin: 0;
   white-space: pre-wrap;
+  font-family: Consolas, monospace;
+}
+
+.copy-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background: #1d4ed8;
+}
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 400px;
+}
+.question-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

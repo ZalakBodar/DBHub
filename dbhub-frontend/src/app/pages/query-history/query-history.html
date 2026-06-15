@@ -1,27 +1,64 @@
 <div class="history-container">
 
-  <h1>Query History</h1>
+  <div class="header">
 
-  <table *ngIf="history.length > 0">
+    <h1>Query History</h1>
+
+  </div>
+
+  <div class="summary-card">
+
+    <h3>Total Queries</h3>
+
+    <p>{{ history.length }}</p>
+
+  </div>
+
+  <input
+    type="text"
+    placeholder="Search question or SQL..."
+    [(ngModel)]="searchText"
+    (input)="filterHistory()"
+    class="search-box">
+
+  <table *ngIf="filteredHistory.length > 0">
 
     <thead>
+
       <tr>
+
         <th>ID</th>
         <th>Question</th>
         <th>SQL Query</th>
+        <th>Created At</th>
+        <th>Action</th>
+
       </tr>
+
     </thead>
 
     <tbody>
 
-      <tr *ngFor="let item of history">
+      <tr *ngFor="let item of filteredHistory">
 
         <td>{{ item.Id }}</td>
 
-        <td>{{ item.Question }}</td>
+      <td>{{ item.Question }}</td>
+
+      <td>
+        <pre>{{ item.SQLQuery }}</pre>
+      </td>
+
+        <td>{{ formatDate(item.CreatedAt) }}</td>
 
         <td>
-          <pre>{{ item.SQLQuery }}</pre>
+
+          <button
+            class="copy-btn"
+            (click)="copySQL(item.SQLQuery)">
+            Copy SQL
+          </button>
+
         </td>
 
       </tr>
@@ -30,8 +67,10 @@
 
   </table>
 
-  <p *ngIf="history.length === 0">
+  <p *ngIf="filteredHistory.length === 0">
+
     No query history found.
+
   </p>
 
 </div>

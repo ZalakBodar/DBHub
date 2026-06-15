@@ -56,16 +56,16 @@ export class QueryRunner {
 
 },
 
-      error: (err) => {
+error: (err) => {
 
-        console.error(err);
+  console.error(err);
 
-        alert('Query Failed');
-
-      }
-
-    });
-
-  }
+  alert(
+    err?.error?.message ||
+    err?.message ||
+    'Query Failed'
+  );
 
 }
+
+  })}}

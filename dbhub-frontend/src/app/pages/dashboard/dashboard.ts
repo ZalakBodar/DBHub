@@ -15,10 +15,10 @@ export class Dashboard implements OnInit {
   totalTables = 0;
   totalUsers = 0;
 
-  databaseStatus = 'Connected';
-  connectorType = 'MSSQL';
-  databaseName = 'DBHubTest';
-  serverName = 'SQL Server';
+databaseStatus = '';
+connectorType = '';
+databaseName = '';
+serverName = '';
 
   activities: string[] = [];
 
@@ -34,8 +34,9 @@ export class Dashboard implements OnInit {
 
     this.loadDatabaseHealth();
 
-  }
+    this.loadActiveConnector();
 
+  }
   loadDashboard() {
 
     // Total Tables
@@ -128,5 +129,51 @@ export class Dashboard implements OnInit {
     });
 
   }
+loadActiveConnector() {
+
+  this.http.get<any>(
+    'http://127.0.0.1:8000/active-connector'
+  ).subscribe({
+
+    next: (data) => {
+
+      this.connectorType = data.db_type;
+
+      this.databaseName = data.name;
+
+      if (data.db_type === 'MSSQL') {
+
+        this.serverName = 'SQL Server';
+
+      }
+
+      else if (data.db_type === 'POSTGRESQL') {
+
+        this.serverName = 'PostgreSQL';
+
+      }
+
+      else if (data.db_type === 'ORACLE') {
+
+        this.serverName = 'Oracle';
+
+      }
+
+      this.cdr.detectChanges();
+
+    },
+
+    error: (err) => {
+
+      console.error(
+        'Active Connector Error:',
+        err
+      );
+
+    }
+
+  });
+
+}
 
 }

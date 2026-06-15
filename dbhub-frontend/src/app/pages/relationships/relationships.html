@@ -1,35 +1,72 @@
-<h1>Database Relationships</h1>
+<div class="relationship-container">
 
-<p *ngIf="loading">
-  Loading relationships...
-</p>
+  <div class="header">
 
-<p *ngIf="!loading && relationships.length === 0">
-  No relationships found.
-</p>
+    <h1>Database Relationships</h1>
 
-<table *ngIf="!loading && relationships.length > 0">
+    <button
+      class="refresh-btn"
+      (click)="loadRelationships()">
+      Refresh
+    </button>
 
-  <thead>
-    <tr>
-      <th>Parent Table</th>
-      <th>Parent Column</th>
-      <th>Child Table</th>
-      <th>Child Column</th>
-    </tr>
-  </thead>
+  </div>
 
-  <tbody>
+  <div class="summary-card">
 
-    <tr *ngFor="let rel of relationships">
+    <h3>Total Relationships</h3>
 
-      <td>{{ rel.parent_table }}</td>
-      <td>{{ rel.parent_column }}</td>
-      <td>{{ rel.child_table }}</td>
-      <td>{{ rel.child_column }}</td>
+    <p>{{ relationships.length }}</p>
 
-    </tr>
+  </div>
 
-  </tbody>
+  <p class="loading" *ngIf="loading">
+    Loading relationships...
+  </p>
 
-</table>
+  <p class="empty" *ngIf="!loading && relationships.length === 0">
+    No relationships found.
+  </p>
+
+  <div
+    class="table-wrapper"
+    *ngIf="!loading && relationships.length > 0">
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>#</th>
+          <th>Parent Table</th>
+          <th>Parent Column</th>
+          <th>Child Table</th>
+          <th>Child Column</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr
+          *ngFor="let rel of relationships; let i = index">
+
+          <td>{{ i + 1 }}</td>
+
+          <td>{{ rel.parent_table }}</td>
+
+          <td>{{ rel.parent_column }}</td>
+
+          <td>{{ rel.child_table }}</td>
+
+          <td>{{ rel.child_column }}</td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

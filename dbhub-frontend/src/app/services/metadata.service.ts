@@ -52,6 +52,34 @@ getRelationships() {
       `${this.apiUrl}/users`
     );
   }
+saveDescription(data: any) {
+
+  return this.http.post(
+    'http://127.0.0.1:8000/metadata/save-description',
+    data
+  );
+
+}
+getAIContext() {
+  return this.http.get(
+    'http://127.0.0.1:8000/ai-context'
+  );
+}
+getActiveConnector() {
+
+  return this.http.get(
+    'http://127.0.0.1:8000/active-connector'
+  );
+
+}
+extractMetadata(id: number) {
+
+  return this.http.post(
+    `http://127.0.0.1:8000/metadata/extract/${id}`,
+    {}
+  );
+
+}
 
   addUser(user: any) {
     return this.http.post(

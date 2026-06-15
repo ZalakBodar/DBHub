@@ -2,29 +2,33 @@
 
   <h1>Metadata Management</h1>
 
-  <div class="toolbar">
+<div class="toolbar">
 
-    <select [(ngModel)]="selectedTable">
+  <select [(ngModel)]="selectedTable">
 
-      <option value="">
-        Select Table
-      </option>
+    <option value="">
+      Select Table
+    </option>
 
-      <option
-        *ngFor="let table of tables"
-        [value]="table">
+    <option
+      *ngFor="let table of tables"
+      [value]="table">
 
-        {{ table }}
+      {{ table }}
 
-      </option>
+    </option>
 
-    </select>
+  </select>
 
-    <button (click)="loadMetadata()">
-      View Metadata
-    </button>
+  <button (click)="loadMetadata()">
+    View Metadata
+  </button>
 
-  </div>
+  <button (click)="extractMetadata()">
+    Extract Metadata
+  </button>
+
+</div>
 
   <div
     class="metadata-info"
@@ -53,34 +57,55 @@
         <th>Nullable</th>
         <th>Max Length</th>
         <th>Primary Key</th>
+        <th>Description</th>
+        <th>Action</th>
 
       </tr>
 
     </thead>
 
     <tbody>
+<tr *ngFor="let column of columns">
 
-      <tr *ngFor="let column of columns">
+  <td>{{ column.column_name }}</td>
 
-        <td>{{ column.column_name }}</td>
-        <td>{{ column.data_type }}</td>
-        <td>{{ column.nullable }}</td>
-        <td>{{ column.max_length }}</td>
+  <td>{{ column.data_type }}</td>
 
-        <td>
+  <td>{{ column.nullable }}</td>
 
-          <span *ngIf="column.primary_key === 'YES'">
-            ✅ YES
-          </span>
+  <td>{{ column.max_length }}</td>
 
-          <span *ngIf="column.primary_key === 'NO'">
-            ❌ NO
-          </span>
+  <td>
 
-        </td>
+    <span *ngIf="column.primary_key === 'YES'">
+      ✅ YES
+    </span>
 
-      </tr>
+    <span *ngIf="column.primary_key === 'NO'">
+      ❌ NO
+    </span>
 
+  </td>
+
+  <td>
+
+    <input
+      type="text"
+      [(ngModel)]="column.description"
+      placeholder="Enter description">
+
+  </td>
+
+  <td>
+
+    <button
+      (click)="saveDescription(column)">
+      Save
+    </button>
+
+  </td>
+
+</tr>
     </tbody>
 
   </table>

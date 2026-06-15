@@ -10,7 +10,7 @@
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
@@ -30,71 +30,23 @@
 }
 
 .card p {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   color: #0867f6;
   margin: 0;
 }
 
-.activity-card {
-
-  margin-top: 30px;
-
-  background: white;
-
-  padding: 20px;
-
-  border-radius: 12px;
-
-  box-shadow:
-    0 2px 8px rgba(0,0,0,0.05);
-
-}
-
-.activity-card ul {
-
-  padding-left: 20px;
-
-}
-
-.activity-card li {
-
-  margin-bottom: 10px;
-
-}
-
-.activity-card {
-  margin-top: 30px;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-}
-
-.activity-card h2 {
-  margin-bottom: 15px;
-  color: #1e293b;
-}
-
-.activity-card ul {
+.card ul {
   padding-left: 20px;
 }
 
-.activity-card li {
+.card li {
   margin-bottom: 10px;
   color: #475569;
 }
-
-.health-card {
-
-  background: white;
-
-  padding: 20px;
-
-  border-radius: 10px;
-
-  margin-top: 20px;
-
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-
+.health-info p {
+  font-size: 15px !important;
+  color: #475569 !important;
+  font-weight: 400 !important;
+  margin-bottom: 10px;
 }

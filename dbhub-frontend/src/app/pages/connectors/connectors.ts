@@ -15,13 +15,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Connectors implements OnInit {
 
-  connectorName = '';
-  databaseType = 'MSSQL';
-  host = '';
-  port = '';
-  username = '';
-  password = '';
-  databaseName = '';
+connectorName = '';
+databaseType = 'MSSQL';
+host = '';
+port = '';
+username = '';
+password = '';
+databaseName = '';
+
+searchText = '';
+selectedDbType = '';
 
   connectors: any[] = [];
 
@@ -112,8 +115,7 @@ ngOnInit(): void {
   .subscribe({
 
    next: (response: any) => {
-
-  if (response.success) {
+if (response.success) {
 
     alert(response.message);
 
@@ -121,7 +123,9 @@ ngOnInit(): void {
 
     this.connectorName = '';
     this.host = '';
-    this.port = '';
+  this.port = '';
+
+this.onDatabaseTypeChange();
     this.username = '';
     this.password = '';
     this.databaseName = '';
@@ -190,6 +194,35 @@ testConnection() {
   });
 
 }
+filteredConnectors() {
+
+  const search = this.searchText.toLowerCase();
+
+  return this.connectors.filter(connector => {
+
+    const matchesSearch =
+
+      connector.Name?.toLowerCase().includes(search) ||
+
+      connector.DbType?.toLowerCase().includes(search) ||
+
+      connector.Host?.toLowerCase().includes(search) ||
+
+      connector.DatabaseName?.toLowerCase().includes(search) ||
+
+      connector.Status?.toLowerCase().includes(search);
+
+    const matchesType =
+
+      !this.selectedDbType ||
+
+      connector.DbType === this.selectedDbType;
+
+    return matchesSearch && matchesType;
+
+  });
+
+}
 deleteConnector(connectorId: number) {
 
   if (!confirm('Delete this connector?')) {
@@ -214,6 +247,59 @@ deleteConnector(connectorId: number) {
       console.error(err);
 
       alert('Delete failed');
+
+    }
+
+  });
+
+}
+
+activateConnector(connectorId: number) {
+
+  this.http.post<any>(
+    `http://127.0.0.1:8000/connectors/activate/${connectorId}`,
+    {}
+  )
+  .subscribe({
+
+    next: (response) => {
+
+      alert(response.message);
+
+      this.loadConnectors();
+
+    },
+
+    error: (err) => {
+
+      console.error(err);
+
+      alert('Activation Failed');
+
+    }
+
+  });
+
+}
+refreshStatus() {
+
+  this.http.post<any>(
+    'http://127.0.0.1:8000/connectors/refresh-status',
+    {}
+  )
+  .subscribe({
+
+    next: (response) => {
+
+      alert(response.message);
+
+      this.loadConnectors();
+
+    },
+
+    error: () => {
+
+      alert('Refresh Failed');
 
     }
 

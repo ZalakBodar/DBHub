@@ -28,7 +28,7 @@
       <h3>Database Name</h3>
       <p>{{ databaseName }}</p>
     </div>
-   <div class="activity-card">
+   <div class="card">
 
   <h3>Recent Activities</h3>
 
@@ -41,25 +41,14 @@
   </ul>
 
 </div>
-<div class="health-card">
-
+<div class="card">
   <h3>Database Health</h3>
 
-  <p>
-    Status:
-    <strong>{{ databaseStatus }}</strong>
-  </p>
-
-  <p>
-    Database:
-    {{ databaseName }}
-  </p>
-
-  <p>
-    Server:
-    {{ serverName }}
-  </p>
-
+  <div class="health-info">
+    <p>Status: <strong>{{ databaseStatus }}</strong></p>
+    <p>Database: {{ databaseName }}</p>
+    <p>Server: {{ serverName }}</p>
+  </div>
 </div>
   
   </div>

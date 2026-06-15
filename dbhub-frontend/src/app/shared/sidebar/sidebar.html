@@ -16,11 +16,11 @@
       </a>
     </li>
 
-    <li>
-      <a routerLink="/metadata">
-        Metadata
-      </a>
-    </li>
+<li *ngIf="userRole === 'Admin' || userRole === 'Developer'">
+  <a routerLink="/metadata">
+    Metadata
+  </a>
+</li>
 
     <li>
       <a routerLink="/data-viewer">
@@ -28,17 +28,17 @@
       </a>
     </li>
 
-    <li>
-      <a routerLink="/query-runner">
-        Query Runner
-      </a>
-    </li>
+<li *ngIf="userRole !== 'Viewer'">
+  <a routerLink="/query-runner">
+    Query Runner
+  </a>
+</li>
 
-    <li>
-      <a routerLink="/ai-assistant">
-        AI Assistant
-      </a>
-    </li>
+<li *ngIf="userRole !== 'Viewer'">
+  <a routerLink="/ai-assistant">
+    AI Assistant
+  </a>
+</li>
     <li>
   <a routerLink="/query-history">
     Query History

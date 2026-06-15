@@ -13,4 +13,4 @@ WHERE TABLE_TYPE='BASE TABLE'
 for row in cursor.fetchall():
     print(row)
 
-conn.close()
+conn.close() 

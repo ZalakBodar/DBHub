@@ -102,6 +102,7 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  margin-left:2px;
 }
 
 table {
@@ -119,4 +120,30 @@ th,
 td {
   padding: 12px;
   border: 1px solid #ddd;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.active {
+  background: #d4edda;
+  color: #155724;
+}
+
+.failed {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.search-box {
+  margin-bottom: 15px;
+}
+
+.search-box input {
+  width: 300px;
+  padding: 8px;
 }

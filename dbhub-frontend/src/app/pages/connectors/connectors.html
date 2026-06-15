@@ -75,7 +75,33 @@
 </button>
 
     </div>
+<div class="search-box">
 
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="Search Connector">
+
+</div>
+<select [(ngModel)]="selectedDbType">
+
+  <option value="">
+    All Databases
+  </option>
+
+  <option value="MSSQL">
+    MSSQL
+  </option>
+
+  <option value="POSTGRESQL">
+    PostgreSQL
+  </option>
+
+  <option value="ORACLE">
+    Oracle
+  </option>
+
+</select>
   </div>
 
   <h2>Saved Connectors</h2>
@@ -93,6 +119,7 @@
       <th>Database</th>
       <th>User</th>
       <th>Status</th>
+      <th>Active</th>
       <th>Action</th>
 
     </tr>
@@ -101,7 +128,7 @@
 
   <tbody>
 
-    <tr *ngFor="let connector of connectors; let i = index">
+    <tr *ngFor="let connector of filteredConnectors(); let i = index">
 
     <td>{{ connector.Name }}</td>
 <td>{{ connector.DbType }}</td>
@@ -110,21 +137,44 @@
 <td>{{ connector.DatabaseName }}</td>
 <td>{{ connector.Username }}</td>
 
- <td
-  [style.color]="connector.Status === 'Active' ? 'green' : 'red'"
->
-  {{ connector.Status }}
-</td>
-
-      
 <td>
 
+  <span
+    class="status-badge"
+    [class.active]="connector.Status === 'Active'"
+    [class.failed]="connector.Status !== 'Active'">
 
+    {{ connector.Status }}
+
+  </span>
+
+</td>
+<td>
+  <span *ngIf="connector.IsActive == 1">
+    ✅ Active
+  </span>
+
+  <span *ngIf="connector.IsActive != 1">
+    ❌ Inactive
+  </span>
+</td>
+      
+<td>
+  <button
+(click)="refreshStatus()">
+  Refresh
+</button>
+
+<button
+  (click)="activateConnector(connector.Id)">
+  Activate
+</button>
      <button
   class="delete-btn"
   (click)="deleteConnector(connector.Id)">
   Delete
 </button>
+
       </td>
 
     </tr>
