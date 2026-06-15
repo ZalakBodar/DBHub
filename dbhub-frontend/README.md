@@ -1,59 +1,201 @@
-# DbhubFrontend
+# DBHub
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.13.
+AI-Powered Multi-Database Management Platform
 
-## Development server
+## Overview
 
-To start a local development server, run:
+DBHub is a full-stack database management platform built using Angular, FastAPI, and MSSQL.
 
-```bash
-ng serve
+It allows users to:
+
+- Connect multiple database systems
+- Manage metadata
+- Explore database schemas
+- Execute SQL queries
+- View database relationships
+- Generate SQL using AI
+- Maintain query history
+- Control access using user roles
+
+---
+
+## Features
+
+### Dashboard
+- Total Tables
+- Total Users
+- Database Status
+- Connector Type
+- Database Health
+- Recent Activities
+
+### Connectors
+Supports:
+
+- Microsoft SQL Server
+- PostgreSQL
+- Oracle
+
+Functions:
+
+- Add Connector
+- Test Connection
+- Activate Connector
+- Delete Connector
+
+### Metadata Management
+
+Store business descriptions for:
+
+- Tables
+- Columns
+
+Used by AI Assistant for better SQL generation.
+
+### Data Viewer
+
+- View table data
+- Dynamic loading
+- Database independent
+
+### Query Runner
+
+- Execute custom SQL
+- View results instantly
+
+### AI Assistant
+
+Generate SQL using natural language.
+
+Example:
+
+Input:
+
+```text
+show all employees
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Output:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```sql
+SELECT * FROM Employees;
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The AI uses:
 
-```bash
-ng generate --help
-```
+- Database Schema
+- Metadata Context
+- Database Type
 
-## Building
+to generate accurate SQL.
 
-To build the project run:
+### Query History
 
-```bash
-ng build
-```
+Stores:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- User Question
+- Generated SQL
+- Execution Timestamp
 
-## Running unit tests
+### Relationships
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Displays foreign-key relationships between tables.
 
-```bash
-ng test
-```
+Example:
 
-## Running end-to-end tests
+Departments.DepartmentID
+↓
+Employees.DepartmentID
 
-For end-to-end (e2e) testing, run:
+### User Management
 
-```bash
-ng e2e
-```
+Roles:
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- Admin
+- Developer
+- Viewer
 
-## Additional Resources
+Role-based access control is implemented.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## Technology Stack
+
+### Frontend
+
+- Angular
+- TypeScript
+- HTML
+- CSS
+
+### Backend
+
+- FastAPI
+- Python
+
+### Databases
+
+- Microsoft SQL Server
+- PostgreSQL
+- Oracle
+
+### AI
+
+- Large Language Model Integration
+
+---
+
+## Project Structure
+
+DBHub
+
+├── dbhub-frontend
+
+│ ├── Dashboard
+
+│ ├── Connectors
+
+│ ├── Metadata
+
+│ ├── Data Viewer
+
+│ ├── Query Runner
+
+│ ├── AI Assistant
+
+│ ├── Query History
+
+│ └── Relationships
+
+│
+
+└── dbhub-backend
+
+├── FastAPI APIs
+
+├── Database Connectors
+
+├── AI SQL Generation
+
+├── Query Execution
+
+└── Metadata Engine
+
+---
+
+## Future Enhancements
+
+- JWT Authentication
+- Query Analytics
+- ER Diagram Visualization
+- Export Reports
+- Audit Logs
+- AI Query Optimization
+
+---
+
+## Author
+
+Zalak Bodar
+
+DBHub Project 
